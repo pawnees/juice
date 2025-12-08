@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", sans-serif, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.ibm-plex-sans-normal {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings:"wdth" 100;
+}
+
+.bangers-regular {
+  font-family: "Bangers", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+.bg-berry {
+  background-image: url('../src/assets/images/bg_berry.png'); /* Adjust path as needed */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-juice-text {
+  background-image: url('../src/assets/images/juicy-blakberry-text.png'); /* Adjust path as needed */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.nmt-100px {
+  margin-top: -200px;
+}
+
+/* CSS (put in index.css or a global stylesheet) */
+
+/* container - holds the animated border */
+.animated-btn{
+  --radius: 9999px;
+  --border-size: 3px;      /* thickness of border */
+  --speed: 3s;             /* animation speed */
+
+  position: relative;
+  display: inline-block;
+  padding: var(--border-size);    /* creates space for border */
+  border-radius: var(--radius);
+  background: conic-gradient(
+    from 0deg,
+    #ffffff66, #e8d9ff, #a78bfa, #c7a7ff, #ffffff66
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box; /* ensure inner doesn't show gradient */
+  mask: linear-gradient(#fff 0 0) padding-box;
+  cursor: pointer;
+  transition: transform .14s ease, filter .14s ease;
+  will-change: transform;
+}
+
+/* rotating animated gradient */
+.animated-btn::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    #ffffff55, #f6edff66, #c7a7ff, #9a6bff, #ffffff55
+  );
+  filter: blur(6px) saturate(1.1);
+  opacity: 0.9;
+  z-index: 0;
+  animation: rotate-grad var(--speed) linear infinite;
+  pointer-events: none;
+}
+
+/* inner element - actual button face */
+.animated-btn__inner{
+  position: relative;
+  z-index: 1;                 /* above the gradient layer */
+  display: inline-block;
+  border-radius: calc(var(--radius) - var(--border-size));
+  padding: 10px 36px;
+  background: linear-gradient(135deg,#c7a7ff,#a48bff);
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 6px 18px rgba(97, 33, 232, .12);
+  transition: transform .18s ease, box-shadow .18s ease;
+  user-select: none;
+}
+
+/* hover / active */
+.animated-btn:hover{ transform: translateY(-2px); }
+.animated-btn:hover .animated-btn__inner{ box-shadow: 0 12px 30px rgba(97,33,232,.18); }
+.animated-btn:active{ transform: translateY(0); }
+
+/* animation keyframes */
+@keyframes rotate-grad {
+  to { transform: rotate(360deg); }
+}
+
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* @keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(1000);
+  }
+} */
