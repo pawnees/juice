@@ -60,7 +60,6 @@ export default function JuiceShowcase() {
   };
 
   const quickView = (item) => () => {
-    console.log("Viewing item:", item);
     setSelected(item.id === selected ? null : item.id);
   };
 
@@ -77,7 +76,7 @@ export default function JuiceShowcase() {
 
         {/* Home Flavours */}
         <Drawer open={open} onClose={() => setOpen(false)} side="left">
-          <div className={`min-h-screen bg-gray-50 ${animate ? "animate-fadeOut" : ""}`}>
+          <div className={`min-h-screen bg-gray-50 `}>
             <div className="flex flex-row gap-4">
               {
               juices.map((item) => (
@@ -89,14 +88,6 @@ export default function JuiceShowcase() {
               </div>
           </div>
           
-          <div className="p-6">
-            <button
-              onClick={() => setOpen(false)}
-              className="mt-6 px-4 py-2 bg-gray-700 text-white rounded"
-            >
-              Close
-            </button>
-          </div>
         </Drawer>
     </div>
     

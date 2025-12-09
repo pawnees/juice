@@ -2,12 +2,13 @@
 
 export default function CheekyLimeCard({item, quickView, selected, canclick, animate}) {
   return (
-    <div className={`w-full max-w-sm mx-auto p-6 ${animate ? "animate-zigzag animate-slideleft" : ""}`}   style={selected ? {backgroundColor: item.bgColor} : {}}>
+    <div className={`w-full max-w-sm mx-auto p-6`}   style={selected ? {backgroundColor: item.bgColor} : {}}>
       <div className={`relative flex justify-center `}>
         <img
           src={item.imgCircle}
           alt="background circle"
-          className={`w-72 h-72 object-contain absolute top-[25%] z-0 duration-300 ${selected ? "scale-125" : "scale-0"}`}
+          className={`w-72 h-72 object-contain absolute top-[25%] z-0 duration-500 ${selected ? "scale-125" : "scale-0"} 
+          ${animate && item.id === 4? " transition-all duration-[6000ms] scale-[1800] opacity-0" : ""}`}
         />
 
         <img
